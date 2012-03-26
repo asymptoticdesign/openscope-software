@@ -79,7 +79,7 @@ The following is run once before the the Tkinter mainloop() takes over
 """
 window = Tkinter.Tk()
 window.title('OpenScope Image Analysis Software')
-print 'length of arguments:', len(sys.argv)
+
 if len(sys.argv) > 2:
     sequence = Sequence(sys.argv[1],sys.argv[2])
     imageFile = sequence.nextImage()
