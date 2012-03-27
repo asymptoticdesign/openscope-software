@@ -107,6 +107,6 @@ canvas.pack()
 image_tk = ImageTk.PhotoImage(image)
 canvas.create_image(image.size[0]//2, image.size[1]//2, image=image_tk)
 
-window.bind("<Button-1>", draw)
+window.bind("<Control-Button-1>", draw)
 window.bind("<Control-space>", lambda e: nextFrame(sequence_object=sequence,event=e))
 Tkinter.mainloop()

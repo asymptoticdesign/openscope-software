@@ -1,0 +1,31 @@
+Title: OpenScope Software Package
+Date Started: Mar 2012
+Last Modified: Mar 2012
+http://www.asymptoticdesign.org/
+This work is licensed under a Creative Commons 3.0 License.
+(Attribution - NonCommerical - ShareAlike)
+http://www.creativecommons.org/licenses/by-nc-sa/3.0/
+
+In summary, you are free to copy, distribute, edit, and remix the work.
+Under the conditions that you attribute the work to the author, it is for
+noncommercial purposes, and if you build upon this work or otherwise alter
+it, you may only distribute the resulting work under this license.
+
+Of course, these permissions may be waived with permission from the author.
+
+===Description===
+OpenScope Software Package is a package of python-based utilites meant to assist in common imaging tasks related to biological microscopy.  Currently the package is menat for fluorescence imaging.
+
+===Usage===
+Right now openscope-software has two modes: single and sequential analysis
+
+python openscope-software.py [filename]
+This will upload the file with a given filename into the Tkinter canvas.  Control-Clicking defines the corner of a rectangle; after two clicks a rectangle is drawn and the averaged intensity in the rectangle is printed to the standard output.
+
+python openscope-software.py [fileroot] [extension]
+This set of arguments runs openscope-software in sequential mode.  The software will look for all files in the directory with a given root filename and extension (e.g. 'test' and 'jpg' returns all files of the format test*.jpg), and then sorts them numerically.  The sequences of images should be numbered (image01.jpg, image02,jpg, image03.jpg,etc.).  The user can then control-click to define regions of interest in the image; control-spacebar brings up the next frame, recalculates the intensities in the same region, and writes them to file.  This is meant for tracking fluorescent dyes such as in Calcium Imaging.
+
+===Dependencies===
+Python 2.6
+Python Imaging Library (+ python-imaging-tk)
+TKinter
