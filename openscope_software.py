@@ -2,6 +2,7 @@ import Tkinter
 import Image, ImageDraw, ImageTk
 import scipy, numpy
 import os, sys
+import datetime, getpass
 
 class Sequence:
     def __init__(self,filename,extension):
@@ -42,6 +43,7 @@ class RegionOfInterest:
         #find the average intensity of all the pixels in the pixel list
         self.avgInt = scipy.mean(self.pixels)
         print "Intensity: ",self.avgInt
+        return self.avgInt
         
 def draw(event):
     global region
@@ -71,7 +73,8 @@ def nextFrame(sequence_object,event=None):
     for i in listOfRegions:
         i.redraw()
         i.findPixels()
-        i.calcIntensity()
+        dataFile.write(str(i.calcIntensity())+',')
+    dataFile.write('\n')
     canvas.update()
     
 """
@@ -80,12 +83,17 @@ The following is run once before the the Tkinter mainloop() takes over
 window = Tkinter.Tk()
 window.title('OpenScope Image Analysis Software')
 
+#determine if we're doing a single image or a sequence
 if len(sys.argv) > 2:
     sequence = Sequence(sys.argv[1],sys.argv[2])
     imageFile = sequence.nextImage()
 if len(sys.argv) == 2:
     imageFile = sys.argv[1]
 
+filename = datetime.datetime.now().strftime("%Y-%m-%d")+getpass.getuser()
+dataFile = open(filename+'.dat','w')
+
+#Variables for analysis
 mouse_X = 0
 mouse_Y = 0
 region = []
